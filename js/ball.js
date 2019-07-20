@@ -29,6 +29,8 @@ class Ball {
         this.dy = dy;
         this.playerAScores = false;
         this.playerBScores = false;
+        this.playerABounces = false;
+        this.playerBBounces = false;
     }
 
     // Performs a game tick
@@ -46,10 +48,16 @@ class Ball {
         if (this.x < (this.game.playerA.x + this.game.playerA.w))
             if (this.y > this.game.playerA.y && this.y < (this.game.playerA.y + this.game.playerA.h)) {
                 this.dx = this.dx_default;
+                this.playerABounces = true;
+                console.log("BOUNCE!");
             }
         // Bounce on right paddle
-        if ((this.x + this.w) > this.game.playerB.x && this.y > this.game.playerB.y && this.y < (this.game.playerB.y + this.game.playerB.h)) {
-            this.dx = -this.dx_default;
+        if ((this.x + this.w) > this.game.playerB.x) {
+            if (this.y > this.game.playerB.y && this.y < (this.game.playerB.y + this.game.playerB.h)) {
+                this.dx = -this.dx_default;
+                this.playerBBounces = true;
+                console.log("BOUNCE!");
+            }
         }
 
         // Check if scores

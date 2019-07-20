@@ -2,16 +2,19 @@ class Game {
     /*
     player types: human, ai
     */
-    constructor(playerA_type, playerB_type) {
-        this.playerA_type = playerA_type;
-        this.playerB_type = playerB_type;
+    constructor(typeA, typeB) {
+        this.typeA = typeA;
+        this.typeB = typeB;
+        this.scoreA = 0;
+        this.scoreB = 0;
+        this.bouncesA = 0;
+        this.bouncesB = 0;
+
+        this.ticks = 0;
 
         //this.state = 0; // 0: initialized // 1: playing // 2: ended
         this.worldW = 800;
         this.worldH = 600;
-        this.scoreA = 0;
-        this.scoreB = 0;
-        this.ticks = 0;
 
         this.ballX_init = this.worldW / 2;
         this.ballY_init = this.worldH / 2;
@@ -19,48 +22,20 @@ class Game {
         this.ballDY_init = 5;
 
         this.ball = new Ball(this.ballX_init, this.ballY_init, 15, this.ballDX_init, this.ballDY_init, this);
-        this.playerA = new Player(this.playerA_type, 10, this.worldH / 2, 25, 70, 10, this);
-        this.playerB = new Player(this.playerB_type, this.worldW - 35, this.worldH / 2, 25, 70, 10, this);
+        this.playerA = new Player(this.typeA, 10, this.worldH / 2, 25, 70, 10, this);
+        this.playerB = new Player(this.typeB, this.worldW - 35, this.worldH / 2, 25, 70, 10, this);
     }
 
-    /*
-    setBall(ball) {
-        this.ball = ball;
+    // Prints game status
+    print() {
+        var txt = "#Ticks:" + this.ticks;
+        txt += " #Scores:" + this.scoreA + "-" + this.scoreB;
+        txt += " #Bounces:" + this.bouncesA + "-" + this.bouncesB;
+        //txt += " #PlayerA:" + this.playerA.y;
+        //txt += " #PlayerB:" + this.playerB.y;
+        //txt += " #Ball:(" + this.ball.x + "," + this.ball.y + ")(" + this.ball.dx + "," + this.ball.dy + ")";
+        console.log(txt);
     }
-
-    setPlayerA(playerA) {
-        this.playerA = playerA;
-    }
-
-    setPlayerB(playerB) {
-        this.playerB = playerB;
-    }
-    */
-
-    /*
-    keyPressed(e) {
-        var key = e.keyCode;
-
-        // A PRESSED
-        if (key == 65 && this.playerA.type == 'human') {
-            this.playerA.goUp();
-        }
-        // Z PRESSED
-        else if (key == 90 && this.playerA.type == 'human') {
-            this.playerA.goDown();
-        }
-        // UP PRESSED
-        else if (key == 38 && this.playerB.type == 'human') {
-            this.playerB.goUp();
-        }
-        // DOWN PRESSED
-        else if (key == 40 && this.playerB.type == 'human') {
-            this.playerB.goDown();
-        }
-
-        //console.log('key pressed: ' + key)
-    }
-    */
 
     // Perform a game tick
     update() {
@@ -70,6 +45,16 @@ class Game {
         this.ball.update();
         this.playerA.update();
         this.playerB.update();
+
+        // If a player bounced ball, update bounces
+        if (this.ball.playerABounces) {
+            this.bouncesA++;
+            this.ball.playerABounces = false;
+        }
+        if (this.ball.playerBBounces) {
+            this.bouncesB++;
+            this.ball.playerBBounces = false;
+        }
 
         // If a player scored, update scores and reset ball
         if (this.ball.playerAScores) {

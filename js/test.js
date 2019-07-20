@@ -1,6 +1,7 @@
 canvas = document.getElementById("GameCanvas");
-game = new Game('human', 'ai');
-render = new GameRender(game, canvas);
+
+game = new Game('human', 'human');
+render = new Render(game, canvas);
 
 document.addEventListener("keydown", keyDownHandler, false);
 function keyDownHandler(e) {
@@ -29,6 +30,7 @@ function keyDownHandler(e) {
 
 function foo() {
     game.update();
+    //game.print();
     render.draw();
 }
 

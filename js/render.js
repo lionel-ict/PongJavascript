@@ -1,4 +1,4 @@
-class GameRender {
+class Render {
 
     /*
     game: Game object
@@ -36,14 +36,21 @@ class GameRender {
     drawScores() {
         this.ctx.font = "20px Arial";
         this.ctx.fillStyle = "#0095DD";
-        this.ctx.fillText("Score A: " + this.game.scoreA, canvas.width * 0.1, 30);
-        this.ctx.fillText("Score B: " + this.game.scoreB, canvas.width * 0.8, 30);
+        this.ctx.fillText("Score A: " + this.game.scoreA, canvas.width * 0.1, 20);
+        this.ctx.fillText("Score B: " + this.game.scoreB, canvas.width * 0.8, 20);
+    }
+
+    drawBounces() {
+        this.ctx.font = "16px Arial";
+        this.ctx.fillStyle = "#0095DD";
+        this.ctx.fillText("Bounces A: " + this.game.bouncesA, canvas.width * 0.1, 40);
+        this.ctx.fillText("Bounces B: " + this.game.bouncesB, canvas.width * 0.8, 40);
     }
 
     drawTicks() {
         this.ctx.font = "20px Arial";
         this.ctx.fillStyle = "#0095DD";
-        this.ctx.fillText("Ticks: " + this.game.ticks, canvas.width * 0.45, 30);
+        this.ctx.fillText("Ticks: " + this.game.ticks, canvas.width * 0.45, 20);
     }
 
     draw() {
@@ -51,6 +58,7 @@ class GameRender {
         this.drawPlayers();
         this.drawBall();
         this.drawScores();
+        this.drawBounces();
         this.drawTicks();
     }
 }
