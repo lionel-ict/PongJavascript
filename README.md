@@ -1,2 +1,2 @@
 # jspong-ai
-JavaScript Pong Game with some AI stuff
+Working on a JavaScript Pong Game with Machine Learning
