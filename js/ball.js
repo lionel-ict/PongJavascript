@@ -49,14 +49,12 @@ class Ball {
             if (this.y > this.game.playerA.y && this.y < (this.game.playerA.y + this.game.playerA.h)) {
                 this.dx = this.dx_default;
                 this.playerABounces = true;
-                console.log("BOUNCE!");
             }
         // Bounce on right paddle
         if ((this.x + this.w) > this.game.playerB.x) {
             if (this.y > this.game.playerB.y && this.y < (this.game.playerB.y + this.game.playerB.h)) {
                 this.dx = -this.dx_default;
                 this.playerBBounces = true;
-                console.log("BOUNCE!");
             }
         }
 

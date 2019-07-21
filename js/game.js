@@ -26,14 +26,25 @@ class Game {
         this.playerB = new Player(this.typeB, this.worldW - 35, this.worldH / 2, 25, 70, 10, this);
     }
 
-    // Prints game status
-    print() {
+    // Prints human-readable status of current game
+    printHuman() {
         var txt = "#Ticks:" + this.ticks;
         txt += " #Scores:" + this.scoreA + "-" + this.scoreB;
         txt += " #Bounces:" + this.bouncesA + "-" + this.bouncesB;
         //txt += " #PlayerA:" + this.playerA.y;
         //txt += " #PlayerB:" + this.playerB.y;
         //txt += " #Ball:(" + this.ball.x + "," + this.ball.y + ")(" + this.ball.dx + "," + this.ball.dy + ")";
+        console.log(txt);
+    }
+
+    // Print corpus-style data of current game
+    printData() {
+        var txt = this.ticks + " ";
+        txt += this.ball.x + " " + this.ball.y + " ";
+        txt += this.ball.dx + " " + this.ball.dy + " ";
+        txt += this.playerA.x + " " + this.playerA.y + " ";
+        txt += this.playerB.x + " " + this.playerB.y + " ";
+        txt += this.scoreA + " " + this.scoreB + " ";
         console.log(txt);
     }
 
