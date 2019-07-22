@@ -15,15 +15,14 @@ class Game {
         //this.state = 0; // 0: initialized // 1: playing // 2: ended
         this.worldW = 800;
         this.worldH = 600;
-
         this.ballX_init = this.worldW / 2;
         this.ballY_init = this.worldH / 2;
-        this.ballDX_init = 5;
-        this.ballDY_init = 5;
+        this.ballDX_init = 4;
+        this.ballDY_init = 4;
 
         this.ball = new Ball(this.ballX_init, this.ballY_init, 15, this.ballDX_init, this.ballDY_init, this);
-        this.playerA = new Player(this.typeA, 10, this.worldH / 2, 25, 70, 10, this);
-        this.playerB = new Player(this.typeB, this.worldW - 35, this.worldH / 2, 25, 70, 10, this);
+        this.playerA = new Player(this.typeA, 10, this.worldH / 2, 25, 70, 4, this);
+        this.playerB = new Player(this.typeB, this.worldW - 35, this.worldH / 2, 25, 70, 4, this);
     }
 
     // Prints human-readable status of current game
@@ -42,8 +41,8 @@ class Game {
         var txt = this.ticks + " ";
         txt += this.ball.x + " " + this.ball.y + " ";
         txt += this.ball.dx + " " + this.ball.dy + " ";
-        txt += this.playerA.x + " " + this.playerA.y + " ";
-        txt += this.playerB.x + " " + this.playerB.y + " ";
+        txt += this.playerA.y; // + " " + this.playerB.y + " ";
+        //txt += this.playerB.x + " " + this.playerB.y + " ";
         txt += this.scoreA + " " + this.scoreB + " ";
         console.log(txt);
     }
@@ -58,23 +57,25 @@ class Game {
         this.playerB.update();
 
         // If a player bounced ball, update bounces
-        if (this.ball.playerABounces) {
+        if (this.ball.playerABounced) {
             this.bouncesA++;
-            this.ball.playerABounces = false;
+            this.ball.playerABounced = false;
         }
-        if (this.ball.playerBBounces) {
+        if (this.ball.playerBBounced) {
             this.bouncesB++;
-            this.ball.playerBBounces = false;
+            this.ball.playerBBounced = false;
         }
 
         // If a player scored, update scores and reset ball
-        if (this.ball.playerAScores) {
+        if (this.ball.playerAScored) {
             this.scoreA++;
-            this.ball.reset(this.ballX_init, this.ballY_init, -this.ballDX_init, this.ballDY_init);
+            this.ball.reset();
+            //this.ball.setPosVel(this.ballX_init, this.ballY_init, -this.ballDX_init, this.ballDY_init);
         }
-        else if (this.ball.playerBScores) {
+        else if (this.ball.playerBScored) {
             this.scoreB++;
-            this.ball.reset(this.ballX_init, this.ballY_init, this.ballDX_init, this.ballDY_init);
+            this.ball.reset();
+            //this.ball.setPosVel(this.ballX_init, this.ballY_init, this.ballDX_init, this.ballDY_init);
         }
     }
 }

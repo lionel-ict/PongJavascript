@@ -1,9 +1,8 @@
 /*
 SIMULATE GAME WITHOUT RENDERING GRAPHICS
-INTENDED FOR SIMULATIONS WITH NODE.JS 
 */
 
-game = new Game('ai', 'human');
+game = new Game('ai', 'ai');
 
 /*while (true) {
     game.update();
@@ -16,7 +15,4 @@ function gameloop() {
     game.printData();
 }
 
-//while (true) gameloop();
-
-// RUN gameloop() every 10 ms
-setInterval(gameloop, 2);
+setInterval(gameloop, 5);

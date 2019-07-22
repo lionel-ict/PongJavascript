@@ -5,7 +5,7 @@ DEFAULT IS 'AI' VS 'HUMAN'
 
 canvas = document.getElementById("GameCanvas");
 
-game = new Game('human', 'ai');
+game = new Game('ai', 'human');
 render = new Render(game, canvas);
 
 // Keyboard press listener and handler
@@ -31,7 +31,7 @@ function keyDownHandler(e) {
 // GAME LOOP
 function gameloop() {
     game.update();
-    game.print();
+    //game.printHuman();
     render.draw();
 }
 

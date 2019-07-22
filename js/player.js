@@ -28,7 +28,7 @@ class Player {
         this.nextMove = +1;
     }
 
-    // Calculates next move (depending on typpe of player)
+    // Calculates next move (depending on type of player)
     calculateNextMove() {
         if (this.type == 'ai') {
             if (this.game.ball.y < this.y) {
